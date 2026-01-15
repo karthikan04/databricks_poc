@@ -428,7 +428,7 @@ def initialize_knowledge_bases():
 # ============================================================================
 
 st.set_page_config(
-    page_title=""Databricks FinOps Advisor",
+    page_title="Databricks FinOps Advisor",
     page_icon="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG5dgueFTq1hwBzJiphTA4QWNFTNWiPM4qTw&s",
     layout="centered",
     initial_sidebar_state="collapsed"
