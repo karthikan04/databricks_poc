@@ -1,8 +1,13 @@
 streamlit
-groq
+
 langchain
+langchain-core
+langchain-community
 langchain-text-splitters
+
 chromadb
 sentence-transformers
+torch
 beautifulsoup4
 requests
+groq
