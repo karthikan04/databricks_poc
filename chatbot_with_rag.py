@@ -79,9 +79,8 @@ ARCHITECTURE_URLS = [
 ]
 
 COSTING_URLS = [
-    "https://www.databricks.com/product/pricing",
-    "https://www.databricks.com/product/aws-pricing",
-    "https://www.databricks.com/product/azure-pricing",
+    "https://azure.microsoft.com/en-us/pricing/details/databricks/#instance-type-support",
+	"https://prices.azure.com/api/retail/prices?api-version=2021-10-01-preview",
     "https://docs.databricks.com/en/administration-guide/account-settings-e2/pricing.html",
     "https://docs.databricks.com/en/compute/configure.html",  # DBU consumption
     "https://docs.databricks.com/en/optimizations/cost-optimization.html",
