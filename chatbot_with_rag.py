@@ -1310,7 +1310,7 @@ Use the above documentation to answer questions accurately. The documentation is
             
             # Stream response from Groq
             stream = client.chat.completions.create(
-                model="qwen/qwen3-32b",
+                model="meta-llama/llama-4-scout-17b-16e-instruct",
                 messages=messages_with_context,
                 stream=True,
                 max_tokens=2048,
