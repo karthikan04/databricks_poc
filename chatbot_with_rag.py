@@ -955,22 +955,6 @@ if "messages" not in st.session_state:
     st.session_state.messages = [
         {"role": "system", "content": SYSTEM_PROMPT}
     ]
-
-# ============================================================================
-# SHOW START CONVERSATION (ONLY BEFORE CHAT STARTS)
-# ============================================================================
-
-has_chat_started = any(
-    msg["role"] != "system" for msg in st.session_state.messages
-)
-
-if not has_chat_started:
-    st.markdown("""
-    <div class="start-convo">
-        <h3>Start a conversation</h3>
-        <p>Ask anything about Databricks cost optimization, migration, or architecture.</p>
-    </div>
-    """, unsafe_allow_html=True)
 	
 # ============================================================================
 # DISPLAY CHAT HISTORY
