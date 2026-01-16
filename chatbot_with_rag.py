@@ -602,15 +602,167 @@ Do not present this entity mapping to the user and ask: "Here's what I've unders
 ## AFTER ENTITY MAPPING CONFIRMATION:
 Once the entity mapping is confirmed, provide:
 
-1. **Detailed Migration Plan with Phases**: Break down the migration into clear phases (e.g., Phase 1: Assessment & Setup, Phase 2: Data Migration, Phase 3: Workload Migration, Phase 4: Optimization). Include timeline estimates for each phase.
+### 1. DETAILED MIGRATION PLAN WITH PHASES
+ 
+Provide a thorough, step-by-step migration plan organized into clear phases. For each phase, include:
+ 
+**Phase 1: Assessment & Planning (Week 1-2)**
+- Conduct current state assessment of existing data platform
+- Document data lineage, dependencies, and integration points
+- Identify migration risks and mitigation strategies
+- Create detailed migration backlog and prioritization
+- Set up Databricks workspace and initial configuration
+- Establish governance framework and naming conventions
+- Define success metrics and KPIs for migration
+ 
+**Phase 2: Foundation & Infrastructure Setup (Week 2-4)**
+- Configure cloud infrastructure (networking, security, IAM)
+- Set up Unity Catalog for data governance
+- Implement security controls (encryption, access policies, audit logging)
+- Configure storage accounts/S3 buckets with proper lifecycle policies
+- Establish CI/CD pipelines for deployment automation
+- Set up monitoring and alerting infrastructure
+- Create development, staging, and production environments
+- Configure identity federation and SSO if required
+ 
+**Phase 3: Data Migration (Week 4-8)**
+- Implement data ingestion patterns based on source systems
+- For each data source, specify:
+  * Migration approach (full load vs incremental)
+  * Data validation and quality checks
+  * Transformation logic migration
+  * Performance optimization strategies
+- Set up Delta Lake architecture with bronze/silver/gold layers
+- Implement data quality frameworks
+- Configure data retention and archival policies
+- Perform parallel runs to validate data accuracy
+- Document data migration runbooks
+ 
+**Phase 4: Workload Migration (Week 8-12)**
+- Migrate batch processing jobs to Databricks workflows
+- For each workload type, detail:
+  * Conversion approach (rewrite vs lift-and-shift)
+  * Cluster configuration and sizing
+  * Optimization opportunities
+  * Scheduling and orchestration setup
+- Migrate ETL/ELT pipelines to Delta Live Tables or Workflows
+- Convert analytics workloads to Databricks SQL
+- Migrate ML workloads to MLflow and feature stores
+- Implement streaming pipelines if applicable
+- Set up job monitoring and failure handling
+ 
+**Phase 5: Integration & Testing (Week 12-14)**
+- Integrate with BI tools (Power BI, Tableau, etc.)
+- Connect orchestration tools if not using Databricks Workflows
+- Implement end-to-end testing scenarios
+- Conduct performance testing and optimization
+- User acceptance testing with business stakeholders
+- Load testing for concurrent user scenarios
+- Validate compliance and security requirements
+ 
+**Phase 6: Cutover & Optimization (Week 14-16)**
+- Execute production cutover plan
+- Run parallel systems during validation period
+- Monitor performance and costs closely
+- Fine-tune cluster configurations based on actual usage
+- Implement cost optimization recommendations
+- Knowledge transfer and documentation
+- Post-migration support and issue resolution
+- Establish continuous improvement processes
+ 
+**Timeline Estimates**: Provide realistic timeline ranges based on complexity, noting factors that could accelerate or delay migration.
+ 
+**Migration Risks & Mitigation**: List key risks specific to their environment and mitigation strategies.
+ 
+### 2. DETAILED DATABRICKS ARCHITECTURE RECOMMENDATIONS
+ 
+Provide comprehensive architecture guidance covering all aspects:
+ 
+#### **A. Workspace Organization**
+- Recommend workspace structure (single vs multi-workspace)
+- Explain workspace-to-environment mapping (dev/staging/prod)
+- Detail folder structure and organization best practices
+- User and group management strategy
+- Notebook and code organization patterns
+ 
+#### **B. Compute Architecture**
+Provide detailed recommendations for each workload type:
+ 
+**For ETL/Batch Processing:**
+- Cluster type: Job clusters vs All-purpose clusters
+- Compute sizing: Recommend specific instance types based on workload
+- Autoscaling configuration: Min/max nodes, scale-up/down behavior
+- Cluster policies to enforce standards and control costs
+- Spot instance usage strategy (if applicable)
+- Photon acceleration recommendations
+- Example cluster configurations for their specific use cases
+ 
+**For Analytics/BI Workloads:**
+- SQL Warehouse type (Classic, Pro, Serverless)
+- Warehouse sizing (X-Small to 4X-Large) based on concurrent users
+- Auto-stop configuration
+- Serverless SQL benefits for their use case
+- Query optimization strategies
+ 
+**For Streaming Workloads (if applicable):**
+- Structured Streaming cluster configuration
+- Delta Live Tables vs custom streaming
+- Checkpointing and fault tolerance setup
+- Exactly-once processing guarantees
+ 
+**For ML Workloads (if applicable):**
+- ML cluster specifications (CPU vs GPU)
+- MLflow integration and experiment tracking
+- Feature store architecture
+- Model serving infrastructure (batch vs real-time)
+ 
+#### **C. Storage Strategy**
+- Delta Lake table architecture (bronze/silver/gold medallion)
+- Partition strategy based on query patterns
+- Z-ordering and data skipping optimization
+- Table properties and optimization settings
+- External vs managed tables guidance
+- Data retention and time travel policies
+- Storage lifecycle management
+ 
+#### **D. Data Governance & Security**
+- Unity Catalog implementation approach
+- Metastore configuration (single vs multiple)
+- Catalog and schema organization
+- Row-level and column-level security setup
+- Data masking and anonymization strategies
+- Audit logging and compliance monitoring
+- Data classification and tagging
+- Access control patterns (RBAC, ABAC)
+ 
+#### **E. Networking & Connectivity**
+- VNet/VPC configuration recommendations
+- Private endpoints and service endpoints
+- On-premises connectivity (if applicable): VPN vs ExpressRoute/Direct Connect
+- IP whitelisting and firewall rules
+- Secure cluster connectivity mode
+ 
+#### **F. Integration Architecture**
+- BI tool connectivity patterns
+- ETL/orchestration tool integration
+- Real-time data ingestion patterns
+- API and programmatic access setup
+- Partner Connect for third-party tools
+ 
+#### **G. Monitoring & Observability**
+- Databricks system tables for monitoring
+- Custom dashboards for operational metrics
+- Cost tracking and chargeback mechanisms
+- Performance monitoring and alerting
+- Job failure notifications and incident response
+ 
+#### **H. Best Practices for Their Use Case**
+Provide specific best practices tailored to:
+- Their industry and compliance requirements
+- Their workload patterns and scale
+- Their team size and skill level
+- Their performance and cost priorities
 
-2. **Databricks Architecture Recommendations**: Describe the recommended architecture including:
-   - Workspace structure
-   - Compute resources (cluster types, sizing)
-   - Storage strategy
-   - Security and governance approach
-   - Integration points
-   - Best practices for their specific use case
 
 3. Provide a detailed cost breakdown using information from the costing documentation. Structure the cost estimation as follows:
  
