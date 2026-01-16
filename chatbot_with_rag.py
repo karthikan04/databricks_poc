@@ -611,22 +611,136 @@ Once the entity mapping is confirmed, provide:
    - Integration points
    - Best practices for their specific use case
 
-3. **Cost Estimation & Breakdown**
-   Provide an estimated cost breakdown covering:
-   - Compute (interactive vs job clusters, DBUs)
-   - Storage
-   - Data transfer / networking (if applicable)
-   - Additional platform or tooling costs
+3. Provide a detailed cost breakdown using information from the costing documentation. Structure the cost estimation as follows:
+ 
+#### **A. Infrastructure Costs**
+ 
+**Compute Costs (DBU-based):**
+- Calculate DBU consumption for each workload type
+- For each cluster/warehouse, estimate:
+  * DBU rate (Jobs, All-Purpose, SQL, Serverless, etc.)
+  * Hours of operation per day/month
+  * Total monthly DBU consumption
+  * Cost per DBU based on cloud provider and region
+  * Monthly compute cost
+- Include separate estimates for:
+  * ETL/batch processing clusters
+  * Interactive analytics (SQL Warehouses)
+  * Streaming workloads
+  * ML training and inference
+- Factor in autoscaling efficiency (average utilization %)
+- Include Photon surcharges if recommended
+ 
+**Example Format:**
+```
+ETL Processing Workloads:
+- Cluster Type: Jobs Compute (Standard)
+- Instance Type: [specific instance based on docs]
+- DBU Rate: [rate from pricing docs] DBUs/hour
+- Estimated Runtime: [X] hours/day × 30 days = [Y] hours/month
+- Total DBUs: [Y] hours × [DBU rate] = [Z] DBUs/month
+- DBU Price: $[price] per DBU
+- Monthly Cost: $[total]
+```
+ 
+**Storage Costs:**
+- Delta Lake storage volume estimate
+- Storage tier recommendations (hot/cool/archive)
+- Monthly storage cost calculation
+- Data transfer costs (if multi-region or egress)
+ 
+**Additional Infrastructure:**
+- Unity Catalog metastore costs
+- Delta Live Tables pricing (if applicable)
+- Vector Search costs (if applicable)
+- Model Serving endpoints (if applicable)
+ 
+#### **B. Total Cost of Ownership (TCO) Comparison**
+ 
+Provide a comparison table:
+```
+Current Platform Costs:
+- Infrastructure: $[amount] (if provided)
+- Licenses: $[amount] (if provided)
+- Maintenance: $[amount] (if estimated)
+- Total Monthly: $[total]
+ 
+Estimated Databricks Costs:
+- Compute (DBUs): $[amount]
+- Storage: $[amount]
+- Databricks Platform Subscription: $[amount if applicable]
+- Total Monthly: $[total]
+ 
+Potential Savings/Increase: [%] ([explanation])
+```
+ 
+#### **C. Cost Optimization Recommendations**
+ 
+Based on costing documentation, provide specific recommendations:
+ 
+**Immediate Optimizations:**
+- Use job clusters instead of all-purpose clusters for production
+- Implement auto-termination policies
+- Right-size clusters based on workload profiling
+- Use spot/preemptible instances for fault-tolerant workloads
+- Enable cluster autoscaling with appropriate min/max settings
+- Schedule clusters to run only during business hours (if applicable)
+ 
+**Advanced Optimizations:**
+- Delta caching for frequently accessed data
+- Photon for SQL-heavy workloads (cost-benefit analysis)
+- Serverless SQL for unpredictable/bursty analytics
+- Optimize table partitioning and Z-ordering
+- Implement data lifecycle policies
+- Use table constraints and optimize file sizes
+ 
+**Cost Monitoring:**
+- Set up budget alerts at [X]% thresholds
+- Implement chargeback/showback using workspace tags
+- Regular cost review cadence (weekly/monthly)
+- Use Databricks system tables for cost attribution
+ 
+#### **D. Cost Ranges and Scenarios**
+ 
+Provide three cost scenarios:
+ 
+**Conservative Estimate (Optimized):**
+- Assumes best practices implemented
+- Aggressive autoscaling
+- High utilization of cost-saving features
+- Monthly Range: $[low] - $[mid-low]
+ 
+**Expected Estimate (Realistic):**
+- Typical implementation
+- Standard autoscaling
+- Some optimization applied
+- Monthly Range: $[mid] - $[mid-high]
+ 
+**High Estimate (Non-optimized):**
+- Conservative autoscaling
+- Learning curve inefficiencies
+- Over-provisioned resources
+- Monthly Range: $[mid-high] - $[high]
+ 
+**Note to User**: Emphasize that actual costs will vary based on:
+- Usage patterns and workload efficiency
+- How well optimization recommendations are implemented
+- Seasonal/cyclical business variations
+- Growth in data volume and users
+ 
+#### **E. Cost Assumptions and Disclaimers**
+ 
+Clearly state all assumptions made:
+- Cloud provider and region (impacts DBU pricing)
+- Reserved capacity vs on-demand pricing
+- Estimated cluster utilization percentages
+- Data growth projections
+- Concurrent user estimates
+- Any features or services included/excluded
+ 
+Add disclaimer:
+"These cost estimates are based on [costing documentation date/version] and current pricing. Actual costs may vary based on usage patterns, optimization efforts, and Databricks pricing changes. We recommend starting with a proof-of-concept to validate estimates before full migration."
 
-   Clearly state all assumptions and estimation methodology.
-
-4. **Cost Optimization Opportunities**
-   Identify practical ways to reduce costs, such as:
-   - Cluster right-sizing and scheduling
-   - Job vs all-purpose compute usage
-   - Auto-termination and autoscaling
-   - Data layout and caching strategies
-   - Governance and chargeback/showback
    
 Provide these recommendations in a clear, structured format that a non-technical user can understand.
 
