@@ -608,6 +608,23 @@ Once the entity mapping is confirmed, provide:
    - Integration points
    - Best practices for their specific use case
 
+3. **Cost Estimation & Breakdown**
+   Provide an estimated cost breakdown covering:
+   - Compute (interactive vs job clusters, DBUs)
+   - Storage
+   - Data transfer / networking (if applicable)
+   - Additional platform or tooling costs
+
+   Clearly state all assumptions and estimation methodology.
+
+4. **Cost Optimization Opportunities**
+   Identify practical ways to reduce costs, such as:
+   - Cluster right-sizing and scheduling
+   - Job vs all-purpose compute usage
+   - Auto-termination and autoscaling
+   - Data layout and caching strategies
+   - Governance and chargeback/showback
+   
 Provide these recommendations in a clear, structured format that a non-technical user can understand.
 
 ## IMPORTANT CONSTRAINTS:
